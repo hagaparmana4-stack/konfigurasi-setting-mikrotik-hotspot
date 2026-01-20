@@ -1,0 +1,38 @@
+1. Menjalankan Hotspot Setup
+Ini adalah langkah paling krusial. Gunakan fitur otomatis agar MikroTik membuatkan aturan firewall dan NAT secara otomatis untuk Anda.
+Buka Winbox dan pergi ke menu IP > Hotspot.
+Klik tab Servers, lalu klik tombol Hotspot Setup.
+Hotspot Interface: Pilih port yang terhubung ke akses poin atau user (contoh: ether2 atau wlan1).
+Local Address of Network: Biarkan default (misal: 192.168.88.1/24), pastikan Masquerade Network tercentang.
+Address Pool: Tentukan rentang IP untuk pelanggan.
+Select Certificate: Pilih none.
+IP Address of SMTP Server: Biarkan 0.0.0.0.
+DNS Servers: Masukkan DNS Google: 8.8.8.8 dan 8.8.4.4.
+DNS Name: Ini adalah alamat login. Masukkan nama unik seperti wifi.login atau net.id.
+Admin User: Masukkan password untuk akun admin hotspot pertama Anda.
+2. Membatasi Kecepatan (User Profile)
+Agar satu user tidak menghabiskan seluruh bandwidth internet, buatlah profil kecepatan:
+Masih di menu Hotspot, pindah ke tab User Profiles.
+Klik tanda + (tambah).
+Name: Beri nama, misalnya Paket_3Mbps.
+Shared Users: Isi 1 (agar satu akun hanya bisa dipakai 1 perangkat).
+Rate Limit (rx/tx): Isi limitasinya, contoh: 3M/3M (artinya Download 3 Mbps dan Upload 3 Mbps).
+Klik OK.
+3. Membuat Akun User
+Sekarang kita buatkan username dan password untuk pelanggan/pengguna:
+Pindah ke tab Users.
+Klik tanda + (tambah).
+Server: Pilih all atau server hotspot yang baru dibuat.
+Name: Masukkan username (contoh: user01).
+Password: Masukkan password-nya.
+Profile: Pilih profil yang tadi dibuat (Paket_3Mbps).
+Klik OK.
+4. Tips Penting: Mematikan Cookie
+Secara bawaan, MikroTik akan menyimpan data login user (Cookie). Jika user disconnect dan menyambung lagi, mereka tidak akan diminta login ulang. Jika Anda ingin setiap user selalu muncul halaman login saat kembali:
+Pergi ke tab Server Profiles.
+Klik dua kali nama profil hotspot Anda (biasanya hsprof1).
+Buka tab Login.
+Hilangkan centang pada Cookie.
+Klik OK.
+Cek Hasilnya
+Coba hubungkan HP atau Laptop Anda ke WiFi tersebut. Jika berhasil, perangkat akan otomatis membuka browser dan menampilkan halaman login sesuai dengan DNS Name yang Anda buat di langkah pertama.
